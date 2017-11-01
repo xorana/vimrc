@@ -144,8 +144,8 @@ function! AdaptScheme()
     highlight SpecialKey ctermbg=none
     highlight VertSplit ctermbg=none
     highlight Signcolumn ctermbg=none
-	highlight LineNr ctermbg=none
-	highlight CursorLineNr ctermbg=none
+    highlight LineNr ctermbg=none
+    highlight CursorLineNr ctermbg=none
 endfunction
 
 " clear colour scheme background
