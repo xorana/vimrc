@@ -16,15 +16,15 @@ set hidden
 
 " caching
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.vim/.undo
 
 set backup
-set backupdir=~/.vim/tmp
+set backupdir=~/.vim/.tmp
 set writebackup
 
-set directory=~/.vim/tmp
+set directory=~/.vim/.tmp
 
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/tmp/.viminfo
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.tmp/.viminfo
 
 " fuzzy find
 set path+=**
@@ -124,6 +124,9 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_winsize=10
 let g:netrw_banner=0
+
+" remove .netrwhist file
+let g:netrw_dirhistmax=0
 
 " ========
 " COMMANDS
