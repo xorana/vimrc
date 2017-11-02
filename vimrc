@@ -74,8 +74,8 @@ set tabstop=4
 set softtabstop=4
 
 " auto indenting
-" set smartindent
-" set autoindent
+set smartindent
+set autoindent
 
 " set leader key to comma
 let mapleader=","
@@ -89,8 +89,8 @@ set timeoutlen=1000
 " ==
 
 " terminal colours
-" set termguicolors
-set t_Co=256
+set termguicolors
+" set t_Co=256
 
 " show matching brackets
 set showmatch
@@ -152,7 +152,7 @@ function! AdaptScheme()
 endfunction
 
 " clear colour scheme background
-autocmd ColorScheme * call AdaptScheme()
+" autocmd ColorScheme * call AdaptScheme()
 
 " ========
 " MAPPINGS
@@ -185,6 +185,10 @@ let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
 let s:palette.inactive.middle = s:palette.normal.middle
 let s:palette.tabline.middle = s:palette.normal.middle
 
+" nerdtree
+let g:NERDTreeChDirMode = 2
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>t :NERDTreeFocus<CR>
+
 " colour scheme
-" has to go down here because it needs to go after the plugin
 colorscheme monokai
