@@ -165,13 +165,11 @@ map <silent> <Space> :noh<cr>
 " PLUGINS
 " =======
 
-call plug#begin('~/.vim/plugged')
+execute pathogen#infect()
 
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 "Plug 'dylanaraps/wal.vim'
-Plug 'crusoexia/vim-monokai'
-
-call plug#end()
+"Plug 'crusoexia/vim-monokai'
 
 " lightline
 set laststatus=2
