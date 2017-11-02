@@ -159,17 +159,13 @@ endfunction
 " ========
 
 " clear search highlighting
-map <silent> <Space> :noh<cr>
+nnoremap <silent> <Space> :noh<cr>
 
 " =======
 " PLUGINS
 " =======
 
 execute pathogen#infect()
-
-"Plug 'itchyny/lightline.vim'
-"Plug 'dylanaraps/wal.vim'
-"Plug 'crusoexia/vim-monokai'
 
 " lightline
 set laststatus=2
@@ -187,8 +183,24 @@ let s:palette.tabline.middle = s:palette.normal.middle
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>t :NERDTreeFocus<CR>
+nnoremap <Leader>f :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+" nnoremap <Leader> :NERDTreeFocus<CR>
+
+" when opening vim with no files, open nerd tree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" close if only thing left open is nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" close nerdtree when a file is opened
+let NERDTreeQuitOnOpen=1
+
+" get rid of ? and replace arrows
+let NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable='+'
+let g:NERDTreeDirArrowCollapsible='-'
 
 " colour scheme
 colorscheme monokai
