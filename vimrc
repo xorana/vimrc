@@ -34,18 +34,6 @@ set wildmode=longest,list,full
 set wildmenu
 set wildignorecase
 
-" ignore files that vim doesnt use
-set wildignore+=.git,.hg,.svn
-set wildignore+=*.aux,*.out,*.toc
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
-set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
-set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
-set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
-set wildignore+=*.eot,*.otf,*.ttf,*.woff
-set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
-set wildignore+=*.swp,.lock,.DS_Store,._*
-
 " case insensitive search
 set ignorecase
 set smartcase
@@ -89,8 +77,8 @@ set timeoutlen=1000
 " ==
 
 " terminal colours
-set termguicolors
-" set t_Co=256
+" set termguicolors
+set t_Co=256
 
 " show matching brackets
 set showmatch
@@ -138,6 +126,7 @@ let g:netrw_dirhistmax=0
 :command W w
 :command Q q
 
+" clear background off colour scheme
 function! AdaptScheme()
     highlight clear CursorLine
     highlight Normal ctermbg=none
@@ -152,7 +141,7 @@ function! AdaptScheme()
 endfunction
 
 " clear colour scheme background
-" autocmd ColorScheme * call AdaptScheme()
+autocmd ColorScheme * call AdaptScheme()
 
 " ========
 " MAPPINGS
@@ -183,6 +172,8 @@ let s:palette.tabline.middle = s:palette.normal.middle
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeWinSize=45
+
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " nnoremap <Leader> :NERDTreeFocus<CR>
