@@ -24,7 +24,7 @@ set writebackup
 
 set directory=~/.vim/.tmp
 
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.tmp/.viminfo
+ret viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.tmp/.viminfo
 
 " fuzzy find
 set path+=**
@@ -92,7 +92,7 @@ set synmaxcol=512
 filetype indent plugin on
 
 " only render when necessary
-set lazyredraw
+" set lazyredraw
 
 " scroll offset
 set so=15
@@ -141,7 +141,7 @@ function! AdaptScheme()
 endfunction
 
 " clear colour scheme background
-autocmd ColorScheme * call AdaptScheme()
+" autocmd ColorScheme * call AdaptScheme()
 
 " ========
 " MAPPINGS
@@ -170,6 +170,16 @@ let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
 let s:palette.inactive.middle = s:palette.normal.middle
 let s:palette.tabline.middle = s:palette.normal.middle
 
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='minimalist'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = '<'
+
 " nerdtree
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeWinSize=45
@@ -183,7 +193,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " close if only thing left open is nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " close nerdtree when a file is opened
 let NERDTreeQuitOnOpen=1
@@ -194,4 +204,4 @@ let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
 
 " colour scheme
-colorscheme monokai
+colorscheme molokai
