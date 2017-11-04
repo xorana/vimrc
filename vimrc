@@ -157,18 +157,18 @@ nnoremap <silent> <Space> :noh<cr>
 execute pathogen#infect()
 
 " lightline
-set laststatus=2
+" set laststatus=2
 set noshowmode
 
-let g:lightline = {
-    \ 'colorscheme': 'seoul256',
-    \ }
+"let g:lightline = {
+"    \ 'colorscheme': 'seoul256',
+"    \ }
 
 " make the lightline background transparent
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
+"let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+"let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+"let s:palette.inactive.middle = s:palette.normal.middle
+"let s:palette.tabline.middle = s:palette.normal.middle
 
 " airline
 let g:airline_powerline_fonts = 1
