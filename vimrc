@@ -24,7 +24,7 @@ set writebackup
 
 set directory=~/.vim/.tmp
 
-ret viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.tmp/.viminfo
+set viminfo+=n~/.vim/.tmp/viminfo
 
 " fuzzy find
 set path+=**
@@ -204,4 +204,4 @@ let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
 
 " colour scheme
-colorscheme molokai
+colorscheme monokai
