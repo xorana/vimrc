@@ -92,7 +92,7 @@ set synmaxcol=512
 filetype indent plugin on
 
 " only render when necessary
-" set lazyredraw
+set lazyredraw
 
 " scroll offset
 set so=15
@@ -115,6 +115,9 @@ let g:netrw_banner=0
 
 " remove .netrwhist file
 let g:netrw_dirhistmax=0
+
+set splitbelow
+set splitright
 
 " ========
 " COMMANDS
@@ -150,6 +153,12 @@ endfunction
 " clear search highlighting
 nnoremap <silent> <Space> :noh<cr>
 
+" quicker pane movement
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " =======
 " PLUGINS
 " =======
@@ -178,7 +187,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-let g:airline_symbols.linenr = '<'
+"let g:airline_symbols.linenr = ' '
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
