@@ -144,7 +144,7 @@ function! AdaptScheme()
 endfunction
 
 " clear colour scheme background
-" autocmd ColorScheme * call AdaptScheme()
+autocmd ColorScheme * call AdaptScheme()
 
 " ========
 " MAPPINGS
@@ -158,6 +158,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" buffer movement and functions
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>h :bprev<CR>
+nnoremap bq :bq <BAR> bd #<CR>
+nnoremap <Leader>x :bdelete<CR>
 
 " =======
 " PLUGINS
@@ -187,7 +193,12 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-"let g:airline_symbols.linenr = ' '
+" display tab line
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamempd = ':t'
+
+" display buffer line
+let g:airline#extensions#bufferline#enabled = 1
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
@@ -213,4 +224,4 @@ let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
 
 " colour scheme
-colorscheme monokai
+colorscheme molokai-dark
