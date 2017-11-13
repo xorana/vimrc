@@ -116,6 +116,7 @@ let g:netrw_banner=0
 " remove .netrwhist file
 let g:netrw_dirhistmax=0
 
+" split more naturally
 set splitbelow
 set splitright
 
@@ -159,11 +160,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" buffer movement and functions
-nnoremap <Leader>l :bnext<CR>
-nnoremap <Leader>h :bprev<CR>
-nnoremap bq :bq <BAR> bd #<CR>
-nnoremap <Leader>x :bdelete<CR>
+" buffer commands
+nnoremap <Leader>l :ls<CR>:b<space>
 
 " =======
 " PLUGINS
