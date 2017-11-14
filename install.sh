@@ -3,9 +3,6 @@
 install() {
 	cd ~/vimrc
 	
-	git submodule init
-	git submodule update
-	
 	cd ~
 
 	if [[ -f ~/.vimrc ]]; then
@@ -28,7 +25,11 @@ install() {
 	mkdir -p ~/.vim/.tmp
 	mkdir -p ~/.vim/.undo
 
+    echo "making plugged directory"
+    mkdir -p ~/.vim/plugged
+
 	echo "xorana's vimrc installed!"
+    echo "make sure to install the plugins with :PlugInstall"
 }
 
 install
