@@ -62,7 +62,23 @@ filetype indent plugin on
 
 set t_Co=256
 
-colorscheme molokai-dark
+" clear background
+function! AdaptScheme()
+    highlight clear CursorLine
+    highlight Normal ctermbg=none
+    highlight LineNr ctermbg=none
+    highlight Folded ctermbg=none
+    highlight NonText ctermbg=none
+    highlight SpecialKey ctermbg=none
+    highlight VertSplit ctermbg=none
+    highlight Signcolumn ctermbg=none
+    highlight LineNr ctermbg=none
+    highlight CursorLineNr ctermbg=none
+endfunction
+
+autocmd ColorScheme * call AdaptScheme()
+
+colorscheme monokai
 
 set showmatch
 set cursorline
@@ -92,21 +108,6 @@ set noshowmode
 :command Wq wq
 :command W w
 :command Q q
-
-function! AdaptScheme()
-    highlight clear CursorLine
-    highlight Normal ctermbg=none
-    highlight LineNr ctermbg=none
-    highlight Folded ctermbg=none
-    highlight NonText ctermbg=none
-    highlight SpecialKey ctermbg=none
-    highlight VertSplit ctermbg=none
-    highlight Signcolumn ctermbg=none
-    highlight LineNr ctermbg=none
-    highlight CursorLineNr ctermbg=none
-endfunction
-
-" autocmd ColorScheme * call AdaptScheme()
 
 " MAPPINGS
 
@@ -146,7 +147,6 @@ let g:airline#extensions#bufferline#enabled = 1
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeWinSize=45
 
-
 " when opening vim with no files, open nerd tree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -161,3 +161,4 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
+
