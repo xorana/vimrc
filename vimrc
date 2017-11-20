@@ -51,6 +51,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'pR0Ps/molokai-dark'
+Plug 'dylanaraps/wal.vim'
 
 call plug#end()
 
