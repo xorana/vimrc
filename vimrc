@@ -4,8 +4,8 @@ set nocompatible
 set modelines=0
 set hidden
 
-set undofile
-set undodir=~/.vim/.undo
+"set undofile
+"set undodir=~/.vim/.undo
 set backup
 set backupdir=~/.vim/.tmp
 set writebackup
@@ -52,6 +52,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
