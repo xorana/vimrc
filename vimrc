@@ -54,6 +54,7 @@ Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-unimpaired'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
