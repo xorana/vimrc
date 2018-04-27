@@ -49,12 +49,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-unimpaired'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'ervandew/supertab'
 
 call plug#end()
 
