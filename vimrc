@@ -51,6 +51,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'tpope/vim-fugitive'
+" Plug 'bling/vim-bufferline'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'ervandew/supertab'
 
@@ -144,6 +147,27 @@ let g:airline#extensions#tabline#fnamempd = ':t'
 
 " display buffer line
 let g:airline#extensions#bufferline#enabled = 1
+
+" lightline
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'molokai',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+" make the lightline background transparent
+" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+" let s:palette.inactive.middle = s:palette.normal.middle
+" let s:palette.tabline.middle = s:palette.normal.middle
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
