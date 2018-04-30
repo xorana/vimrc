@@ -137,8 +137,16 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" pane resize
+nnoremap <silent> = :vertical resize +10<CR>
+nnoremap <silent> - :vertical resize -10<CR>
+nnoremap <silent> + :resize +10<CR>
+nnoremap <silent> _ :resize -10<CR>
+
 " buffer commands
 nnoremap <Leader>l :ls<CR>:b<space>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
