@@ -47,11 +47,16 @@ set shortmess+=I
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
+
+" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" colourschemes
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 " Plug 'itchyny/lightline.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'bling/vim-bufferline'
