@@ -83,7 +83,7 @@ endfunction
 
 autocmd ColorScheme * call AdaptScheme()
 
-colorscheme monokai
+colorscheme faded_material
 
 set showmatch
 set cursorline
