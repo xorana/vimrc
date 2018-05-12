@@ -51,6 +51,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
+Plug 'morhetz/gruvbox'
 " Plug 'itchyny/lightline.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'bling/vim-bufferline'
@@ -83,7 +84,7 @@ endfunction
 
 autocmd ColorScheme * call AdaptScheme()
 
-colorscheme faded_material
+colorscheme gruvbox
 
 set showmatch
 set cursorline
