@@ -49,15 +49,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " colourschemes
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
 
-" Plug 'itchyny/lightline.vim'
-" Plug 'tpope/vim-fugitive'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 " Plug 'bling/vim-bufferline'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'ervandew/supertab'
@@ -87,6 +87,7 @@ function! AdaptScheme()
 endfunction
 
 autocmd ColorScheme * call AdaptScheme()
+set cul!
 
 colorscheme monokai
 
@@ -95,6 +96,7 @@ set cursorline
 
 set lazyredraw
 set ttyfast
+autocmd VimEnter * redraw
 
 set so=15
 set nowrap
@@ -159,24 +161,21 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " PLUGINS
 
 " airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
+" let g:airline_powerline_fonts = 1
+" let g:airline_theme='minimalist'
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
 
 " display tab line
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamempd = ':t'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamempd = ':t'
 
 " display buffer line
-let g:airline#extensions#bufferline#enabled = 1
+" let g:airline#extensions#bufferline#enabled = 1
 
 " lightline
-set laststatus=2
-set noshowmode
-
 let g:lightline = {
       \ 'colorscheme': 'molokai',
       \ 'active': {
@@ -189,10 +188,13 @@ let g:lightline = {
       \ }
 
 " make the lightline background transparent
-" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-" let s:palette.inactive.middle = s:palette.normal.middle
-" let s:palette.tabline.middle = s:palette.normal.middle
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
+
+set laststatus=2
+set noshowmode
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
@@ -212,4 +214,3 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
-
