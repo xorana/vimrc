@@ -99,7 +99,11 @@ set ttyfast
 autocmd VimEnter * redraw
 
 set so=15
-set nowrap
+set wrap
+set linebreak
+set nolist
+set textwidth=0
+set wrapmargin=0
 
 set number
 set relativenumber
