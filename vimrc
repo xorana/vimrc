@@ -55,12 +55,9 @@ Plug 'scrooloose/nerdtree'
 " colourschemes
 Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
-
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-" Plug 'bling/vim-bufferline'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'ervandew/supertab'
+Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 
@@ -218,3 +215,8 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
+
+" mucomplete
+set completeopt+=menuone
+set completeopt+=noselect
+let g:mucomplete#enable_auto_at_startup=1
