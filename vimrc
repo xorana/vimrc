@@ -57,7 +57,15 @@ Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'lifepillar/vim-mucomplete'
+" Plug 'lifepillar/vim-mucomplete'
+"
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
@@ -217,6 +225,8 @@ let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
 
 " mucomplete
-set completeopt+=menuone
-set completeopt+=noselect
-let g:mucomplete#enable_auto_at_startup=1
+" set completeopt+=menuone
+" set completeopt+=noselect
+" let g:mucomplete#enable_auto_at_startup=1
+
+let g:deoplete#enable_at_startup = 1
