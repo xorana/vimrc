@@ -57,8 +57,7 @@ Plug 'pR0Ps/molokai-dark'
 Plug 'dylanaraps/wal.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-" Plug 'lifepillar/vim-mucomplete'
-"
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -66,6 +65,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'zchee/deoplete-jedi'
+Plug 'artur-shaik/vim-javacomplete2'
 
 call plug#end()
 
@@ -142,6 +144,11 @@ function! s:wipeout()
 endfunction
 command! Wipeout call s:wipeout()
 
+function! s:check_back_space()
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
+endfunction
+
 " MAPPINGS
 
 " clear search highlighting
@@ -166,6 +173,9 @@ nnoremap <S-Tab> :bprevious<CR>
 
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " PLUGINS
 
@@ -224,9 +234,9 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
 
-" mucomplete
-" set completeopt+=menuone
-" set completeopt+=noselect
-" let g:mucomplete#enable_auto_at_startup=1
-
+" deoplete
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('auto_complete', v:false)
+
+" javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
