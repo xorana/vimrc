@@ -10,7 +10,9 @@ set backup
 set backupdir=~/.vim/.tmp
 set writebackup
 set directory=~/.vim/.tmp
-set viminfo+=n~/.vim/.tmp/viminfo
+if !has('nvim')
+    set viminfo+=n~/.vim/.tmp/viminfo
+endif
 let g:netrw_dirhistmax=0
 
 set path+=**
@@ -54,20 +56,18 @@ Plug 'scrooloose/nerdtree'
 
 " colourschemes
 Plug 'pR0Ps/molokai-dark'
+Plug 'mhartington/oceanic-next'
 Plug 'dylanaraps/wal.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-Plug 'zchee/deoplete-jedi'
-Plug 'artur-shaik/vim-javacomplete2'
 
 call plug#end()
 
@@ -78,6 +78,10 @@ set synmaxcol=512
 filetype indent plugin on
 
 set t_Co=256
+
+if (has("termguicolors"))
+    set termguicolors
+endif
 
 " clear background
 function! AdaptScheme()
@@ -93,10 +97,10 @@ function! AdaptScheme()
     highlight CursorLineNr ctermbg=none
 endfunction
 
-autocmd ColorScheme * call AdaptScheme()
+"autocmd ColorScheme * call AdaptScheme()
 set cul!
 
-colorscheme monokai
+colorscheme OceanicNext
 
 set showmatch
 set cursorline
@@ -237,6 +241,4 @@ let g:NERDTreeDirArrowCollapsible='-'
 " deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('auto_complete', v:false)
-
-" javacomplete2
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd CompleteDone * pclose " automatically close preview window when completion selected
