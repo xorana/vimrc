@@ -56,10 +56,13 @@ Plug 'scrooloose/nerdtree'
 
 " colourschemes
 Plug 'pR0Ps/molokai-dark'
+Plug 'chriskempson/base16-vim'
 Plug 'mhartington/oceanic-next'
+
 Plug 'dylanaraps/wal.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -68,6 +71,8 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'artur-shaik/vim-javacomplete2'
 
 call plug#end()
 
@@ -100,7 +105,8 @@ endfunction
 "autocmd ColorScheme * call AdaptScheme()
 set cul!
 
-colorscheme OceanicNext
+"colorscheme molokai
+colorscheme base16-default-dark
 
 set showmatch
 set cursorline
@@ -148,10 +154,6 @@ function! s:wipeout()
 endfunction
 command! Wipeout call s:wipeout()
 
-function! s:check_back_space()
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~ '\s'
-endfunction
 
 " MAPPINGS
 
@@ -178,7 +180,14 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
-inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+"inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ deoplete#mappings#manual_complete()
+        function! s:check_back_space() abort "{{{
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+        endfunction"}}}
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " PLUGINS
@@ -242,3 +251,6 @@ let g:NERDTreeDirArrowCollapsible='-'
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('auto_complete', v:false)
 autocmd CompleteDone * pclose " automatically close preview window when completion selected
+
+" javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
