@@ -142,6 +142,9 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='minimalist'
@@ -193,3 +196,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
+
+" autoenable ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
