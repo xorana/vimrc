@@ -1,11 +1,30 @@
-" GENERAL
-
 set nocompatible
+filetype off
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'pR0Ps/molokai-dark'
+Plug 'chriskempson/base16-vim'
+Plug 'mhartington/oceanic-next'
+"Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-jedi'
+
+call plug#end()
+
+syntax on
+filetype plugin indent on
+
 set modelines=0
 set hidden
+set encoding=utf-8
 
-"set undofile
-"set undodir=~/.vim/.undo
 set backup
 set backupdir=~/.vim/.tmp
 set writebackup
@@ -13,82 +32,39 @@ set directory=~/.vim/.tmp
 if !has('nvim')
     set viminfo+=n~/.vim/.tmp/viminfo
 endif
-let g:netrw_dirhistmax=0
 
-set path+=**
-set wildmode=longest,list,full
-set wildmenu
-set wildignorecase
-
-set ignorecase
-set smartcase
-set infercase
-set hlsearch
-set incsearch
-
-set gdefault
-
-set backspace=indent,eol,start
-set encoding=utf-8
-
+set smartindent
+set autoindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set expandtab
 set noshiftround
 
-set smartindent
-set autoindent
+set ignorecase
+set smartcase
+set infercase
+set hlsearch
+set incsearch
+set path+=**
+set wildmode=longest,list,full
+set wildmenu
+set wildignorecase
+set gdefault
+
+set backspace=indent,eol,start
+set ttimeoutlen=0
+set timeoutlen=1000
+set completeopt=noinsert,menuone,noselect
+set shortmess+=I
 
 let mapleader=","
 
-set ttimeoutlen=0
-set timeoutlen=1000
-set shortmess+=I
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'scrooloose/nerdtree'
-
-" airline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
-" colourschemes
-Plug 'pR0Ps/molokai-dark'
-Plug 'chriskempson/base16-vim'
-Plug 'mhartington/oceanic-next'
-
-Plug 'dylanaraps/wal.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'jiangmiao/auto-pairs'
-
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plug 'artur-shaik/vim-javacomplete2'
-
-call plug#end()
-
-" UI
-
-syntax on
-set synmaxcol=512
-filetype indent plugin on
-
 set t_Co=256
-
 if (has("termguicolors"))
     set termguicolors
 endif
 
-" clear background
 function! AdaptScheme()
     highlight clear CursorLine
     highlight Normal ctermbg=none
@@ -102,18 +78,22 @@ function! AdaptScheme()
     highlight CursorLineNr ctermbg=none
 endfunction
 
-"autocmd ColorScheme * call AdaptScheme()
+"autocommand ColorScheme * call AdaptScheme()
 set cul!
 
-"colorscheme molokai
-colorscheme base16-default-dark
+colorscheme molokai-dark
 
-set showmatch
-set cursorline
+set noshowmode
+set splitbelow
+set splitright
 
 set lazyredraw
 set ttyfast
-autocmd VimEnter * redraw
+set showmatch
+set cursorline
+
+set listchars=tab:▸\ ,eol:¬
+set guicursor=
 
 set so=15
 set wrap
@@ -125,22 +105,10 @@ set wrapmargin=0
 set number
 set relativenumber
 
-set splitbelow
-set splitright
-
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_winsize=10
 let g:netrw_banner=0
-
-set noshowmode
-
-" COMMANDS
-
-command WQ wq
-command Wq wq
-command W w
-command Q q
 
 function! s:wipeout()
   let tpbl=[]
@@ -152,27 +120,21 @@ function! s:wipeout()
   endfor
   echom wiped . ' buffers wiped'
 endfunction
+
 command! Wipeout call s:wipeout()
 
-
-" MAPPINGS
-
-" clear search highlighting
 nnoremap <silent> <Space> :noh<cr>
 
-" quicker pane movement
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" pane resize
 nnoremap <silent> = :vertical resize +10<CR>
 nnoremap <silent> - :vertical resize -10<CR>
 nnoremap <silent> + :resize +10<CR>
 nnoremap <silent> _ :resize -10<CR>
 
-" buffer commands
 nnoremap <Leader>l :ls<CR>:b<space>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
@@ -180,53 +142,38 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
-"inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
-inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ deoplete#mappings#manual_complete()
-        function! s:check_back_space() abort "{{{
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
-        endfunction"}}}
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" PLUGINS
-
 " airline
-" let g:airline_powerline_fonts = 1
-" let g:airline_theme='minimalist'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='minimalist'
 
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
 " display tab line
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamempd = ':t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamempd = ':t'
 
 " display buffer line
-" let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
 
 " lightline
-let g:lightline = {
-      \ 'colorscheme': 'molokai',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-
-" make the lightline background transparent
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
-
-set laststatus=2
-set noshowmode
+"let g:lightline = {
+"      \ 'colorscheme': 'molokai',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'fugitive#head'
+"      \ },
+"      \ }
+"
+"" make the lightline background transparent
+"let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+"let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+"let s:palette.inactive.middle = s:palette.normal.middle
+"let s:palette.tabline.middle = s:palette.normal.middle
 
 " nerdtree
 let g:NERDTreeChDirMode = 2
@@ -246,11 +193,3 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='-'
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('auto_complete', v:false)
-autocmd CompleteDone * pclose " automatically close preview window when completion selected
-
-" javacomplete2
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
