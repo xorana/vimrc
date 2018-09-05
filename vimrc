@@ -12,9 +12,11 @@ Plug 'mhartington/oceanic-next'
 "Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
+
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-jedi'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
