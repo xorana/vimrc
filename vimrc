@@ -18,6 +18,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-jedi'
 Plug 'majutsushi/tagbar'
 
+Plug 'kien/ctrlp.vim'
+
 call plug#end()
 
 syntax on
