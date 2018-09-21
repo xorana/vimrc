@@ -9,17 +9,29 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'pR0Ps/molokai-dark'
 Plug 'chriskempson/base16-vim'
 Plug 'mhartington/oceanic-next'
-"Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
+Plug 'majutsushi/tagbar'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ncm2/ncm2-jedi'
-Plug 'majutsushi/tagbar'
-
-Plug 'kien/ctrlp.vim'
-
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-bufword'
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-jedi'
+"Plug 'itchyny/lightline.vim'
+"Plug 'autozimu/LanguageClient-neovim'
 call plug#end()
 
 syntax on
@@ -61,6 +73,7 @@ set ttimeoutlen=0
 set timeoutlen=1000
 set completeopt=noinsert,menuone,noselect
 set shortmess+=I
+set shortmess+=c
 
 let mapleader=","
 
@@ -82,7 +95,7 @@ function! AdaptScheme()
     highlight CursorLineNr ctermbg=none
 endfunction
 
-"autocommand ColorScheme * call AdaptScheme()
+autocmd ColorScheme * call AdaptScheme()
 set cul!
 
 colorscheme molokai-dark
@@ -146,6 +159,17 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
+nnoremap <silent> <Leader>t :call ToggleNcm2()<CR>
+
+"inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : ncm2#_on_complete(1)
+"inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ ncm2#_on_complete(1)
+"        function! s:check_back_space() abort "{{{
+"      let col = col('.') - 1
+"      return !col || getline('.')[col - 1]  =~ '\s'
+"        endfunction"}}}
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -203,3 +227,34 @@ let g:NERDTreeDirArrowCollapsible='-'
 
 " autoenable ncm2
 autocmd BufEnter * call ncm2#enable_for_buffer()
+let g:ncm2#auto_popup = 0
+function! ToggleNcm2()
+    if g:ncm2#auto_popup
+        echo "ncm2 popup off"
+        let g:ncm2#auto_popup = 0
+    else
+        echo "ncm2 popup on"
+        let g:ncm2#auto_popup = 1
+    endif
+endfunction
+
+"let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#buffer_option('auto_complete', v:false)
+"let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib"
+"let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/6.0.1/lib/clang"
+
+" ncm2_pyclang
+let g:ncm2_pyclang#library_path = "/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib"
+
+" fzf
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+nnoremap <c-p> :FZF<cr>
+augroup fzf
+  autocmd!
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
