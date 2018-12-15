@@ -18,27 +18,11 @@ Plug 'Yggdroot/indentLine'
 Plug 'pR0Ps/molokai-dark'
 Plug 'tomasr/molokai'
 Plug 'liuchengxu/space-vim-dark'
-"Plug 'chriskempson/base16-vim'
-"Plug 'sjl/badwolf'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'morhetz/gruvbox'
-"Plug 'kaicataldo/material.vim'
 
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
-
-" deoplete
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-""  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
 
 " ncm2
 Plug 'ncm2/ncm2'
@@ -48,8 +32,6 @@ Plug 'roxma/nvim-yarp'
 "endif
 
 " deoplete sources
-"Plug 'zchee/deoplete-jedi'
-"Plug 'zchee/deoplete-clang'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'ncm2/ncm2-vim-lsp'
@@ -168,14 +150,8 @@ nnoremap <leader>1 :colorscheme molokai-dark<cr>
 nnoremap <leader>2 :colorscheme molokai<cr>
 nnoremap <leader>3 :colorscheme xoria256<cr>
 
-"imap <expr> <Tab> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :"\<Tab>")
 imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"imap <expr> <CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
-"
-"imap <C-e> <Plug>(neosnippet_expand_or_jump)
-"smap <C-e> <Plug>(neosnippet_expand_or_jump)
-"xmap <C-e> <Plug>(neosnippet_expand_target)
 
 " fzf
 let g:fzf_action = {
