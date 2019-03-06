@@ -165,6 +165,9 @@ augroup fzf
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 
+" bufferline
+let g:bufferline_echo = 0
+
 " ultisnips
 "let g:UltiSnipsExpandTrigger="<c-e>"
 "let g:UltiSnipsJumpForwardTrigger="<tab>"
