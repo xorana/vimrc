@@ -102,7 +102,7 @@ endfunction
 
 "autocmd ColorScheme * call AdaptScheme()
 
-colorscheme space-vim-dark
+colorscheme molokai
 set background=dark
 hi Comment guifg=#5C6370 ctermfg=59
 
