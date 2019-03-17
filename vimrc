@@ -7,10 +7,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-fugitive'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 Plug 'Shougo/echodoc.vim'
-"Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 
@@ -24,25 +21,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
-" ncm2
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-"if has('nvim')
-"    Plug 'ncm2/ncm2-ultisnips'
-"endif
-
-" deoplete sources
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'ncm2/ncm2-vim-lsp'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
-
-" ncm2 sources
-"Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-bufword'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 call plug#end()
 
@@ -168,18 +147,6 @@ augroup END
 " bufferline
 let g:bufferline_echo = 0
 
-" ultisnips
-"let g:UltiSnipsExpandTrigger="<c-e>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:UltiSnipsEditSplit="vertical"
-"let g:UltiSnipsSnippetsDir=$HOME."/.vim/snips"
-"let g:UltiSnipsSnippetDirectories=['UltiSnips', $HOME.'/.vim/snips']
-
-" neosnippet
-let g:neosnippet#snippets_directory = '~/.vim/snips'
-let g:neosnippet#enable_snipmate_compatibility = 1
-
 " python-syntax
 let g:python_highlight_all = 1
 
@@ -194,47 +161,3 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamempd = ':t'
 let g:airline#extensions#bufferline#enabled = 1
-
-" deoplete
-"let g:deoplete#enable_at_startup = 1
-"let g:deoplete#auto_complete_start_length = 1
-"let g:deoplete#auto_complete_delay = 50
-"let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib"
-"let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/6.0.1/lib/clang"
-
-" echodoc
-let g:echodoc_enable_at_startup = 1
-
-" language client
-"let g:LanguageClient_serverCommands = {
-"    \ 'python': ['pyls'],
-"    \
-"    \ }
-
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-if executable('cquery')
-   au User lsp_setup call lsp#register_server({
-      \ 'name': 'cquery',
-      \ 'cmd': {server_info->['cquery']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-      \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-      \ })
-endif
-
-" vim-ale
-"let g:ale_fixers = {'python': ['remove_trailing_lines', 'autopep8']}
-"let g:ale_linters = {'python': ['flake8']}
-"let g:ale_lint_on_text_changed = 0
-"let g:ale_lint_on_enter = 0
-"let g:ale_line_on_save = 0
