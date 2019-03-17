@@ -151,12 +151,16 @@ let g:bufferline_echo = 0
 let g:python_highlight_all = 1
 
 " airline
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline_theme='dark_minimal'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+" remove these symbols from airline
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamempd = ':t'
