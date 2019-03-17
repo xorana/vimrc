@@ -79,7 +79,7 @@ function! AdaptScheme()
     highlight CursorLineNr ctermbg=none
 endfunction
 
-"autocmd ColorScheme * call AdaptScheme()
+autocmd ColorScheme * call AdaptScheme()
 
 colorscheme molokai
 set background=dark
