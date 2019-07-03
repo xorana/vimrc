@@ -9,7 +9,7 @@ Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-fugitive'
 Plug 'Shougo/echodoc.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 
 " colorschemes
 Plug 'pR0Ps/molokai-dark'
@@ -21,7 +21,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 call plug#end()
 
@@ -151,16 +151,8 @@ let g:bufferline_echo = 0
 let g:python_highlight_all = 1
 
 " airline
-let g:airline_powerline_fonts = 1
+ let g:airline_powerline_fonts = 1
 let g:airline_theme='dark_minimal'
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" remove these symbols from airline
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamempd = ':t'
