@@ -4,24 +4,18 @@ set rtp+=~/.vim
 call plug#begin('~/.vim/plugged')
 
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'vim-python/python-syntax'
-Plug 'tpope/vim-fugitive'
-Plug 'Shougo/echodoc.vim'
-Plug 'jiangmiao/auto-pairs'
-"Plug 'Yggdroot/indentLine'
+
+Plug 'tell-k/vim-autopep8'
 
 " colorschemes
-Plug 'pR0Ps/molokai-dark'
-Plug 'tomasr/molokai'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'tomasiser/vim-code-dark'
+Plug 'crusoexia/vim-monokai'
 
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
+" Plug 'vim-airline/vim-airline'
 
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -47,18 +41,6 @@ set shiftwidth=4
 set expandtab
 set noshiftround
 
-" search
-set ignorecase
-set smartcase
-set infercase
-set hlsearch
-set incsearch
-set path+=**
-set wildmode=longest,list,full
-set wildmenu
-set wildignorecase
-set gdefault
-
 set backspace=indent,eol,start
 set ttimeoutlen=0
 set timeoutlen=1000
@@ -79,11 +61,10 @@ function! AdaptScheme()
     highlight CursorLineNr ctermbg=none
 endfunction
 
-autocmd ColorScheme * call AdaptScheme()
+" autocmd ColorScheme * call AdaptScheme()
 
-colorscheme molokai
+colorscheme codedark
 set background=dark
-hi Comment guifg=#5C6370 ctermfg=59
 
 set splitbelow
 set splitright
@@ -107,11 +88,6 @@ set relativenumber
 
 set virtualedit=block
 
-let g:netrw_liststyle=3
-let g:netrw_browse_split=5
-let g:netrw_winsize=10
-let g:netrw_banner=0
-
 let mapleader=","
 
 nnoremap <silent> <space> :noh<cr>
@@ -122,38 +98,11 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 nnoremap <c-p> :FZF<cr>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <silent> <leader>b :Buffers<cr>
 
-nnoremap <leader>1 :colorscheme molokai-dark<cr>
-nnoremap <leader>2 :colorscheme molokai<cr>
-nnoremap <leader>3 :colorscheme xoria256<cr>
+nnoremap <leader>1 :colorscheme codedark<cr>
+nnoremap <leader>2 :colorscheme monokai<cr>
 
-imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" fzf
-let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
-augroup fzf
-  autocmd!
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-augroup END
-
-" bufferline
-let g:bufferline_echo = 0
-
-" python-syntax
 let g:python_highlight_all = 1
 
-" airline
- let g:airline_powerline_fonts = 1
-let g:airline_theme='dark_minimal'
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamempd = ':t'
-let g:airline#extensions#bufferline#enabled = 1
+let g:airline_theme = 'codedark'
