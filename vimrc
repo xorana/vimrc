@@ -49,19 +49,21 @@ set shortmess+=I
 set shortmess+=c
 
 function! AdaptScheme()
-    highlight clear CursorLine
-    highlight Normal ctermbg=none
-    highlight LineNr ctermbg=none
-    highlight Folded ctermbg=none
-    highlight NonText ctermbg=none
-    highlight SpecialKey ctermbg=none
-    highlight VertSplit ctermbg=none
-    highlight Signcolumn ctermbg=none
-    highlight LineNr ctermbg=none
-    highlight CursorLineNr ctermbg=none
+    hi clear CursorLine
+    hi Normal ctermbg=none cterm=none
+    hi LineNr ctermbg=none cterm=none
+    hi Folded ctermbg=none cterm=none
+    hi NonText ctermbg=none cterm=none
+    hi SpecialKey ctermbg=none cterm=none
+    hi VertSplit ctermbg=none cterm=none
+    hi Signcolumn ctermbg=none cterm=none
+    hi LineNr ctermbg=none cterm=none
+    hi CursorLineNr ctermbg=none cterm=none
+    hi StatusLine ctermbg=none cterm=none
+    hi EndOfBuffer ctermbg=none cterm=none
 endfunction
 
-" autocmd ColorScheme * call AdaptScheme()
+autocmd ColorScheme * call AdaptScheme()
 
 colorscheme codedark
 set background=dark
