@@ -6,8 +6,6 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'vim-python/python-syntax'
 
-Plug 'tell-k/vim-autopep8'
-
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
 Plug 'crusoexia/vim-monokai'
@@ -15,7 +13,11 @@ Plug 'crusoexia/vim-monokai'
 " airline
 " Plug 'vim-airline/vim-airline'
 
+Plug 'airblade/vim-gitgutter'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -61,6 +63,7 @@ function! AdaptScheme()
     hi CursorLineNr ctermbg=none cterm=none
     hi StatusLine ctermbg=none cterm=none
     hi EndOfBuffer ctermbg=none cterm=none
+    hi Directory ctermbg=none cterm=none
 endfunction
 
 autocmd ColorScheme * call AdaptScheme()
@@ -100,7 +103,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 nnoremap <c-p> :FZF<cr>
-nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>b :buffers<cr>
 
 nnoremap <leader>1 :colorscheme codedark<cr>
 nnoremap <leader>2 :colorscheme monokai<cr>
@@ -108,3 +111,9 @@ nnoremap <leader>2 :colorscheme monokai<cr>
 let g:python_highlight_all = 1
 
 let g:airline_theme = 'codedark'
+
+" coc-prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" NERDTree
+nnoremap <leader>f :NERDTreeToggle<cr>
