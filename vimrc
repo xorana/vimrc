@@ -3,14 +3,14 @@ set rtp+=~/.vim
 
 call plug#begin('~/.vim/plugged')
 
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-python/python-syntax'
 
 Plug 'tell-k/vim-autopep8'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
-Plug 'crusoexia/vim-monokai'
 
 " airline
 " Plug 'vim-airline/vim-airline'
@@ -90,6 +90,11 @@ set relativenumber
 
 set virtualedit=block
 
+let g:netrw_liststyle=3
+let g:netrw_browse_split=5
+let g:netrw_winsize=10
+let g:netrw_banner=0
+
 let mapleader=","
 
 nnoremap <silent> <space> :noh<cr>
@@ -104,6 +109,12 @@ nnoremap <silent> <leader>b :Buffers<cr>
 
 nnoremap <leader>1 :colorscheme codedark<cr>
 nnoremap <leader>2 :colorscheme monokai<cr>
+
+let g:coc_global_extensions = [
+    \ 'coc-tsserver',
+    \ 'coc-pairs',
+    \ 'coc-python'
+    \ ]
 
 let g:python_highlight_all = 1
 
